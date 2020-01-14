@@ -7,19 +7,19 @@ The data set contain real messages that were sent during disaster events than it
 - Some Messages requesting help and some are not. There are 4513 messages that requested help, and 21873 messages are not.
 - Each message belong to one of the three genres(Direct, Social, News).
 #### ETL pipeline:
-Preprocessing is done in 'data/process_data.py' file, where:
-- Data get loaded from the csv files 'data/disaster_messages.csv' and 'data/disaster_categories.csv'.
+Preprocessing is done in `data/process_data.py` file, where:
+- Data get loaded from the csv files `data/disaster_messages.csv` and `data/disaster_categories.csv'.
 - Merge both the messages and the categories datasets.
 - Clean the merged data by removing Duplicated.
-- Store clean merged data in 'data/DisasterResponse.db'
+- Store clean merged data in `data/DisasterResponse.db`
 #### Machine Learning pipeline:
-ML pipeline is implemented in 'models/train_classifier.py' where:
-- Data get loaded from 'data/DisasterResponse.db'.
+ML pipeline is implemented in `models/train_classifier.py` where:
+- Data get loaded from `data/DisasterResponse.db`.
 - Data is split into trainging and testing sets.
 - Implemented a function tokenize() to clean the messages data and tokenize it.
 - Implemented Pipelines for text and machine learning processing.
 - Select Parameters based on GridSearchCV.
-- Store the trained classifier in 'models/classifier.pkl'.
+- Store the trained classifier in `models/classifier.pkl`.
 #### Flask app
 Flask app is implemented in the app folder.
 - Main page allows the user to write a message in the text box.
