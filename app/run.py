@@ -73,12 +73,12 @@ def index():
                 Bar(
                     x=category_names,
                     y=category_counts,
-                     marker=dict(
-                        color='lifeExp')
+                    marker=dict(
+                        color=category_counts)
                 )
             ],
-
-            'layout': {
+             
+             'layout': {
                 
                 'title': 'Distribution of Category',
                 'yaxis': {
