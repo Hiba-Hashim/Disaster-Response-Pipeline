@@ -24,6 +24,14 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 
 
 def load_data(database_filepath):
+    """
+    This function load the dataset from the database
+    and return the features X and target Y variables and coulumes names of the
+    target 
+    
+    Args:
+    (string) database_filepath -- path of the database
+    """
     engine = create_engine('sqlite:///' + database_filepath)
     df = pd.read_sql_table("messages_category",engine)
 
@@ -36,6 +44,13 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
+    """
+    This function is process your text data by removing stop words and lemmatizing the text
+    and return a clean and tokeniz text
+    
+    Args:
+    (string) text -- a piece of text
+    """
    # normalize case and remove punctuation
     txet = re.sub(r"[^a-zA-Z0-9]", ' ', text)
     
@@ -54,6 +69,13 @@ def tokenize(text):
 
 
 def build_model():
+    """
+    This function build the machine learning pipeline
+    and return a machine learning model pipeline
+    
+    Args:
+    
+    """
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer = tokenize)),
         ('tfidf', TfidfTransformer()),
@@ -69,6 +91,15 @@ def build_model():
 
 
 def evaluate_model(model, X_test, Y_test, columns_names):
+    """
+    This function print the classification report
+    
+    Args:
+    () model -- machine learning model
+    (dataframe) X_test -- containing independent Features from the test set
+    (dataframe) Y_test -- containg dependent Features from the test set
+    (list) columns_names -- names of Dependent Features
+    """
     y_pred = model.predict(X_test)
     
     for i, col in enumerate(columns_names):
@@ -76,6 +107,13 @@ def evaluate_model(model, X_test, Y_test, columns_names):
 
 
 def save_model(model, model_filepath):
+    """
+    This function Saves the model into a pickle file
+    
+    Args:
+    () model -- trained machine learning model
+    (string) model_filepath -- Name of the pickle file to save the model
+    """
     pickle.dump(model, open(model_filepath, 'wb'))
 
 
